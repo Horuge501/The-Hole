@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HoleAbsorp : MonoBehaviour
 {
+    public GameObject gameOver;
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Absorbed")) {
             Rigidbody rb = other.GetComponent<Rigidbody>();
@@ -14,6 +16,8 @@ public class HoleAbsorp : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Inestable")) {
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (rb != null) {
+                gameOver.SetActive(true);
+                Scoring.score = 0;
                 Destroy(gameObject);
             }
         }
